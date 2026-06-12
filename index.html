@@ -26,55 +26,46 @@
             font-family: Arial, sans-serif;
             background: #f0f0f0;
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             -webkit-text-size-adjust: 100%;
             touch-action: manipulation;
         }
 
-        body {
-            border: 3px solid #222;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .scene {
-            width: 100%;
-            height: 100%;
-            border: 2px solid #777;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            perspective: 1200px;
-            padding: 28px;
-        }
-
         .card {
-            width: min(80vw, 700px);
-            height: min(65vh, 400px);
+            width: min(78vw, 700px);
+            height: min(58vh, 400px);
             perspective: 1000px;
             cursor: pointer;
             -webkit-tap-highlight-color: transparent;
             outline: none;
 
             opacity: 0;
-            transform: translateY(120vh) scale(0.92);
-            animation: popFromBottom 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            transform: translate3d(0, 110dvh, 0) scale(0.9);
+            animation: popFromBottom 1.15s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            will-change: transform, opacity;
         }
 
         @keyframes popFromBottom {
             0% {
                 opacity: 0;
-                transform: translateY(120vh) scale(0.92);
+                transform: translate3d(0, 110dvh, 0) scale(0.9);
             }
 
-            70% {
+            65% {
                 opacity: 1;
-                transform: translateY(-22px) scale(1.02);
+                transform: translate3d(0, -32px, 0) scale(1.04);
+            }
+
+            82% {
+                opacity: 1;
+                transform: translate3d(0, 12px, 0) scale(0.99);
             }
 
             100% {
                 opacity: 1;
-                transform: translateY(0) scale(1);
+                transform: translate3d(0, 0, 0) scale(1);
             }
         }
 
@@ -84,10 +75,11 @@
             position: relative;
             transition: transform 0.6s;
             transform-style: preserve-3d;
-            border: 2px solid #222;
+
+            border: 3px solid #222;
             border-radius: 18px;
-            background: #f0f0f0;
-            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+            background: #ffffff;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
         }
 
         .card.flipped .card-inner {
@@ -107,22 +99,17 @@
             align-items: center;
             flex-direction: column;
 
-            border-radius: 16px;
+            border-radius: 15px;
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
-            background: #f0f0f0;
-        }
-
-        .front {
+            background: #ffffff;
             color: #333;
-            padding: 20px;
             text-align: center;
+            padding: 20px;
         }
 
         .back {
             transform: rotateY(180deg);
-            text-align: center;
-            padding: 20px;
         }
 
         .circle {
@@ -130,9 +117,11 @@
             height: 160px;
             border-radius: 50%;
             border: 2px solid #333;
+
             display: flex;
             justify-content: center;
             align-items: center;
+
             position: relative;
             margin-bottom: 10px;
         }
@@ -159,7 +148,7 @@
         .brand-name {
             font-size: 24px;
             font-weight: bold;
-            color: black;
+            color: #000;
             margin-top: 10px;
         }
 
@@ -175,45 +164,10 @@
         }
 
         @media (max-width: 480px) {
-            body {
-                border: 2px solid #222;
-            }
-
-            .scene {
-                padding: 18px;
-                border: 1px solid #777;
-            }
-
             .card {
-    width: min(78vw, 700px);
-    height: min(58vh, 400px);
-    perspective: 1000px;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-    outline: none;
-
-    opacity: 0;
-    transform: translate3d(0, 100dvh, 0) scale(0.92);
-    animation: popFromRealBottom 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    will-change: transform, opacity;
-}
-
-@keyframes popFromRealBottom {
-    0% {
-        opacity: 0;
-        transform: translate3d(0, 100dvh, 0) scale(0.92);
-    }
-
-    65% {
-        opacity: 1;
-        transform: translate3d(0, -24px, 0) scale(1.03);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translate3d(0, 0, 0) scale(1);
-    }
-}
+                width: 80vw;
+                height: 56vh;
+            }
 
             .circle {
                 width: 120px;
@@ -241,27 +195,25 @@
 
 <body>
 
-    <div class="scene">
-        <div class="card" role="button" tabindex="0" aria-label="Flip visit card">
-            <div class="card-inner">
+    <div class="card" role="button" tabindex="0" aria-label="Flip visit card">
+        <div class="card-inner">
 
-                <div class="front">
-                    <div class="circle">
-                        <span class="letter-s">S</span>
-                        <span class="letter-t">T</span>
-                    </div>
-
-                    <div class="brand-name">#StelarTex</div>
+            <div class="front">
+                <div class="circle">
+                    <span class="letter-s">S</span>
+                    <span class="letter-t">T</span>
                 </div>
 
-                <div class="back">
-                    <h1>John Doe</h1>
-                    <p>Web Developer</p>
-                    <p>Email: john.doe@example.com</p>
-                    <p>Phone: (123) 456-7890</p>
-                </div>
-
+                <div class="brand-name">#StelarTex</div>
             </div>
+
+            <div class="back">
+                <h1>John Doe</h1>
+                <p>Web Developer</p>
+                <p>Email: john.doe@example.com</p>
+                <p>Phone: (123) 456-7890</p>
+            </div>
+
         </div>
     </div>
 
